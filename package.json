@@ -1,0 +1,24 @@
+{
+  "name": "english-for-kids",
+  "version": "1.0.0",
+  "description": "english for kids by Andrei Medvedev",
+  "main": "script_index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "andreimedvedevsaratov-RS2020Q1"
+  },
+  "keywords": [
+    "english",
+    "for",
+    "kids"
+  ],
+  "author": "Andrei Medvedev",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,639 @@
+/* ----- Normalize ----- */
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+}
+/* ----- Main area ----- */
+.container_1 {
+    max-width: 1020px;
+    margin: 0px auto;
+    padding: 0px 10px;
+}
+/* ----- Burger menu ----- */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+.header:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5a5373;
+    z-index: 2;
+}
+.header__body {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+}
+.header__burger {
+    display: none;
+}
+.header__list {
+    display: flex;
+    position: relative;
+    z-index: 2;
+}
+.header__list li {
+    list-style: none;
+    margin: 0px 0px 0px 20px;
+}
+.header__link {
+    font-family: Roboto;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 36px;
+    text-decoration: none;
+}
+.header__link:hover {
+    font-weight: bold;
+    color: blue;
+    text-decoration: underline;
+}
+@media (max-width: 30000px) {
+    .header__body {
+        height: 150px;
+    }
+    .switcher {
+        flex: 0 0 300px;
+        z-index: 3;
+    }
+    .header__burger {
+        display: block;
+        position: relative;
+        width: 60px;
+        height: 40px;
+        position: relative;
+        z-index: 3;
+    }
+    .header__burger span {
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        top: 18px;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before,
+    .header__burger:after {
+        content: "";
+        background-color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before {
+        top: 0;
+    }
+    .header__burger:after {
+        bottom: 0;
+    }
+    .header__burger.active span {
+        transform: scale(0);
+    }
+    .header__burger.active:before {
+        transform: rotate(45deg);
+        top: 18px;
+    }
+    .header__burger.active:after {
+        transform: rotate(-45deg);
+        bottom: 18px;
+    }
+    .header__menu {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 30%;
+        height: 100%;
+        overflow: auto;
+        background-color: #18b5a4;
+        transition: all 0.3s ease 0s;
+        padding: 170px 10px 20px 10px;
+    }
+    .header__menu.play {
+        background: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(#fd1a15),
+            color-stop(100%, #fc8b34),
+            color-stop(100%, #fff),
+            to(#fff)
+        );
+        background: linear-gradient(180deg, #fd1a15, #fc8b34 100%, #fff 0, #fff);
+    }
+    .header__menu.train {
+        background: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(#7fd03e),
+            color-stop(100%, #007177),
+            color-stop(100%, #fff),
+            to(#fff)
+        );
+        background: linear-gradient(180deg, #7fd03e, #007177 100%, #fff 0, #fff);
+    }
+    .header__menu.active {
+        top: 0;
+    }
+    .header__list {
+        display: block;
+    }
+    .header__list li {
+        margin: 0px 0px 20px 0px;
+    }
+}
+/* ----- Content ----- */
+.container_2 {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 170px 15px 15px 15px;
+    max-width: 30000px;
+    margin: auto;
+    justify-content: center;
+}
+.content {
+    padding: 170px 0px 0px 0px;
+}
+.content.none {
+    display: none;
+}
+@media (max-width: 30000px) {
+    .content {
+        padding: 50px 0px 0px 0px;
+    }
+}
+/* ----- Switcher ----- */
+.switcher_wrapper {
+    max-width: 150px;
+    height: auto;
+}
+.switcher {
+    display: none;
+}
+.switcher + label {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 65px;
+    background: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            color-stop(0, #fd1a15),
+            color-stop(45%, #fc8b34),
+            color-stop(55%, #7fd03e),
+            to(#007177)
+        )
+        0 0;
+    background: linear-gradient(to right, #fd1a15 0, #fc8b34 45%, #7fd03e 55%, #007177 100%) 0 0;
+    background-size: 325px 100%;
+    border-radius: 75px;
+    padding: 3.5px;
+    cursor: pointer;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2) inset;
+}
+.switcher + label:before {
+    content: "play";
+    width: 58px;
+    height: 58px;
+    position: absolute;
+    left: 3.5px;
+    top: 3.5px;
+    border-radius: 100%;
+    background: #fff;
+    text-align: center;
+    line-height: 58px;
+    font-family: "Cabin", sans-serif;
+    font-size: 17.5px;
+    font-weight: bold;
+    color: #fd1a15;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    -webkit-transition: left 500ms ease, color 500ms ease, -webkit-transform 150ms ease;
+    transition: left 500ms ease, color 500ms ease, -webkit-transform 150ms ease;
+    transition: left 500ms ease, color 500ms ease, transform 150ms ease;
+    transition: left 500ms ease, color 500ms ease, transform 150ms ease, -webkit-transform 150ms ease;
+}
+.switcher + label:active:before {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+}
+.switcher:checked + label {
+    background-position-x: -175px;
+}
+.switcher:checked + label:before {
+    content: "train";
+    color: #007177;
+    left: 88.5px;
+}
+/* Category card design - taken from Demo but changed by me*/
+.none {
+    box-sizing: border-box;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+}
+.category_card {
+    width: 300px;
+    height: 280px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: #212529;
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto;
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    margin: 20px 25px;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.category_card.play {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#fd1a15),
+        color-stop(40%, #fc8b34),
+        color-stop(40%, #fff),
+        to(#fff)
+    );
+    background: linear-gradient(180deg, #fd1a15, #fc8b34 40%, #fff 0, #fff);
+}
+.category_card.train {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#7fd03e),
+        color-stop(40%, #007177),
+        color-stop(40%, #fff),
+        to(#fff)
+    );
+    background: linear-gradient(180deg, #7fd03e, #007177 40%, #fff 0, #fff);
+}
+.category_card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    object-fit: cover;
+    margin: 5px auto;
+}
+.category_card:hover {
+    box-shadow: 0px 30px 30px black;
+}
+/* ---- Card flipper ----- */
+.card_header {
+    margin-top: 200px;
+    padding: 0 15px;
+    font-family: "Roboto";
+    font-size: 24px;
+    line-height: 45px;
+    text-align: center;
+    width: 100%;
+    pointer-events: none;
+    background: #fff;
+    color: #212529;
+}
+.back .card_header {
+    background: #fff;
+    color: #000;
+}
+.card_header.active {
+    background: linear-gradient(40deg, #fd1a15, #fc8b34);
+    color: #fff;
+}
+.inactive {
+    opacity: 0.5;
+}
+.rotate {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url(img/rotate.svg);
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center 16px;
+    bottom: 5px;
+    right: 5px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+.rotate.none {
+    box-sizing: border-box;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+}
+.rotate:hover {
+    -webkit-filter: none;
+    filter: none;
+}
+.card_container {
+    -webkit-perspective: 500px;
+    perspective: 500px;
+}
+.back,
+.front,
+.rotate {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.card {
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    width: 300px;
+    height: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px 25px;
+    box-shadow: 0 1px 3px 0 #ccc;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    -webkit-transition: box-shadow 0.25s linear, -webkit-transform 0.7s;
+    transition: box-shadow 0.25s linear, -webkit-transform 0.7s;
+    transition: box-shadow 0.25s linear, transform 0.7s;
+    transition: box-shadow 0.25s linear, transform 0.7s, -webkit-transform 0.7s;
+}
+.card:hover {
+    box-shadow: 0px 30px 30px black;
+    cursor: pointer;
+}
+.translate {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.back,
+.front {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.card_cover .back,
+.card_cover .front {
+    background-size: cover;
+    background-position: 50%;
+}
+/* ----- Information about active page ----- */
+.current_page {
+    display: none;
+}
+/* ----- Page for Statistica ----- */
+.statistics {
+    width: 100%;
+    height: 0px;
+}
+/* ----- Work with buttons ----- */
+.buttons {
+    width: 100%;
+    text-align: center;
+}
+.button {
+    box-sizing: border-box;
+    padding: 20px 25px;
+    font-size: 24px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 650px;
+    height: 65px;
+    background: linear-gradient(40deg, #fd1a15, #fc8b34);
+    color: #fff;
+    border-radius: 10px;
+    border-width: 1px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.button.none {
+    box-sizing: border-box;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+}
+.button.repeat {
+    box-sizing: border-box;
+    padding: 20px 25px;
+    font-size: 24px;
+    margin: 20px auto;
+    max-width: 150px;
+    height: 65px;
+    border-radius: 50%;
+    background-image: url(img/rotate.svg);
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background: linear-gradient(40deg, #fd1a15, #fc8b34);
+    border-width: 0;
+}
+.reset_statistics {
+    box-sizing: border-box;
+    padding: 20px 25px;
+    font-size: 24px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 650px;
+    height: 65px;
+    background: linear-gradient(40deg, #fd1a15, #fc8b34);
+    color: #fff;
+    border-radius: 10px;
+    border-width: 1px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.repeat_difficult_words {
+    box-sizing: border-box;
+    padding: 20px 25px;
+    font-size: 24px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 650px;
+    height: 65px;
+    background: linear-gradient(40deg, #7fd03e, #007177);
+    color: #fff;
+    border-radius: 10px;
+    border-width: 1px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+}
+/* ----- Game progress for solved and unsolved cards ----- */
+.game_progress {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    height: 64px;
+    overflow-x: hidden;
+    line-height: 64px;
+    font-size: 36px;
+    color: #fc6262;
+}
+.game_progress.none {
+    box-sizing: border-box;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+}
+/* ----- Stars for correct and wrong answers ----- */
+.star_mistake {
+    background-image: url(/img/star.svg);
+    width: 64px;
+    height: 64px;
+}
+.star_correct {
+    background-image: url(/img/star-win.svg);
+    width: 64px;
+    height: 64px;
+}
+.star-mistake,
+.star-correct {
+    flex-shrink: 0;
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+    background-size: 64px 64px;
+}
+/* ----- Card which was guessed ----- */
+.guessed {
+    opacity: 0.3;
+    box-shadow: none;
+    transition: none;
+}
+/* ----- Game victory and Game lose ----- */
+.victory {
+    background-image: url(/img/success.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.looser {
+    background-image: url(/img/failure.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+/* ----- Style for Statistics ----- */
+.container_2.statistic_mode {
+    padding-top: 10px;
+}
+.statistic_info {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 150px;
+}
+.table_sort table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.table_sort th {
+    color: #ffebcd;
+    background: #008b8b;
+    cursor: pointer;
+}
+.table_sort td,
+.table_sort th {
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    border: 2px solid #846868;
+}
+.table_sort tbody tr:nth-child(even) {
+    background: #e3e3e3;
+}
+th.sorted[data-order="1"],
+th.sorted[data-order="-1"] {
+    position: relative;
+}
+th.sorted[data-order="1"]::after,
+th.sorted[data-order="-1"]::after {
+    right: 8px;
+    position: absolute;
+}
+th.sorted[data-order="-1"]::after {
+    content: "▼";
+}
+th.sorted[data-order="1"]::after {
+    content: "▲";
+}
+/* ----- Work with different screen width ----- */
+@media (min-width: 1441px) and (max-width: 30000px) {
+    .header {
+        position: relative;
+        max-width: 1440px;
+        margin: 0px auto;
+    }
+    .header__menu {
+        width: 432px;
+    }
+    .container_1 {
+        max-width: 1440px;
+    }
+    .container_2 {
+        max-width: 1440px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .header__menu {
+        width: 432px;
+    }
+}
+@media (min-width: 320px) and (max-width: 767px) {
+    .header__menu {
+        width: 100%;
+    }
+}
